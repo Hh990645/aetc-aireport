@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
+
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>亞太環境科技公司-AI協作專案報告系統 Wireframe</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>亞太環境科技公司-AI協作專案報告系統 Wireframe</title>
+<style>
         :root {
             --primary-green: #2E8B57;
             --secondary-blue: #4682B4;
@@ -166,62 +167,60 @@
                 padding: 20px;
             }
         }
-    </style>
-    <!-- Chart.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+.page { padding-bottom: 120px; }
+body { padding-bottom: 120px; }</style>
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-    <!-- 導航列 -->
-    <div class="nav-bar">
-        <button class="nav-button" onclick="showPage('home')">首頁</button>
-        <button class="nav-button" onclick="showPage('input')">資料輸入</button>
-        <button class="nav-button" onclick="showPage('ai')">AI生成</button>
-        <button class="nav-button" onclick="showPage('review')">委員意見</button>
-        <button class="nav-button" onclick="showPage('knowledge')">知識庫</button>
-    </div>
-
-    <!-- 首頁 -->
-    <div id="home" class="page">
-        <h2>亞太環境科技公司-AI生成環境監測報告系統</h2>
-        <div class="card">
-            <h3>專案列表</h3>
-            <div class="card">✔ 專案A (最後更新: 2023/10/20)</div>
-            <div class="card">✔ 專案B (審查中)</div>
-            <div class="card">✔ 專案C (草稿階段)</div>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-        <p>當前階段：資料收集 (60%)</p>
-        <div class="button-group">
-            <button style="background-color: var(--primary-green); color: white;">+ 新增報告</button>
-            <button style="background-color: var(--secondary-blue); color: white;">查看報告</button>
-        </div>
-    </div>
-
-    <!-- 資料輸入頁 -->
-    <div id="input" class="page">
-        <h2>環境監測資料輸入</h2>
-        <div style="display: flex; gap: 10px; margin: 15px 0;">
-            <button class="nav-button" style="color: var(--text-dark);">空氣</button>
-            <button class="nav-button" style="color: var(--text-dark);">水質</button>
-            <button class="nav-button" style="color: var(--text-dark);">噪音</button>
-        </div>
-        <div class="dashed-border">
-            <p>▢ PM2.5監測值: [____] μg/m³</p>
-            <p>▢ 水溫: [____] °C</p>
-        </div>
-        <div class="button-group">
-            <button style="background: var(--secondary-blue);">匯入Excel</button>
-            <button style="background: #666;">暫存草稿</button>
-            <button style="background: var(--primary-green);">預覽報告</button>
-        </div>
-
-        <!-- Chart Section: Automatic Data Aggregation & Graph Generation -->
-        <h3>監測數據與圖表</h3>
-        <canvas id="dataChart" width="400" height="200"></canvas>
-        <script>
+<!-- 導航列 -->
+<div class="nav-bar">
+<button class="nav-button" onclick="showPage('home')">首頁</button>
+<button class="nav-button" onclick="showPage('input')">資料輸入</button>
+<button class="nav-button" onclick="showPage('ai')">AI生成</button>
+<button class="nav-button" onclick="showPage('review')">委員意見</button>
+<button class="nav-button" onclick="showPage('knowledge')">知識庫</button>
+</div>
+<!-- 首頁 -->
+<div class="page" id="home">
+<h2>亞太環境科技公司-AI生成環境監測報告系統</h2>
+<div class="card">
+<h3>專案列表</h3>
+<div class="card">✔ 專案A (最後更新: 2023/10/20)</div>
+<div class="card">✔ 專案B (審查中)</div>
+<div class="card">✔ 專案C (草稿階段)</div>
+</div>
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+<p>當前階段：資料收集 (60%)</p>
+<div class="button-group">
+<button style="background-color: var(--primary-green); color: white;">+ 新增報告</button>
+<button style="background-color: var(--secondary-blue); color: white;">查看報告</button>
+</div>
+</div>
+<!-- 資料輸入頁 -->
+<div class="page" id="input">
+<h2>環境監測資料輸入</h2>
+<div style="display: flex; gap: 10px; margin: 15px 0;">
+<button class="nav-button" style="color: var(--text-dark);">空氣</button>
+<button class="nav-button" style="color: var(--text-dark);">水質</button>
+<button class="nav-button" style="color: var(--text-dark);">噪音</button>
+</div>
+<div class="dashed-border">
+<p>▢ PM2.5監測值: [____] μg/m³</p>
+<p>▢ 水溫: [____] °C</p>
+</div>
+<div class="button-group">
+<button style="background: var(--secondary-blue);">匯入Excel</button>
+<button style="background: #666;">暫存草稿</button>
+<button style="background: var(--primary-green);">預覽報告</button>
+</div>
+<!-- Chart Section: Automatic Data Aggregation & Graph Generation -->
+<h3>監測數據與圖表</h3>
+<canvas height="200" id="dataChart" width="400"></canvas>
+<script>
             const ctx = document.getElementById('dataChart').getContext('2d');
             const dataChart = new Chart(ctx, {
                 type: 'bar', // Change type to 'line' or 'pie' as needed
@@ -244,61 +243,121 @@
                 }
             });
         </script>
-    </div>
+<!-- OCR 功能區塊 -->
+<div class="card">
+<h3>🖼️ 圖片文字辨識（OCR）</h3>
+<p>請選擇一張圖片檔（JPG/PNG）以進行文字辨識：</p>
+<input accept="image/*" id="ocrImage" type="file"/>
+<button onclick="runOCR()">執行文字辨識</button>
+<h4>辨識結果：</h4>
+<div id="ocrResult" style="white-space: pre-wrap; background: #f4f4f4; padding: 10px; border-radius: 6px; min-height: 50px;"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.5/dist/tesseract.min.js"></script>
+<script>
+function runOCR() {
+    const file = document.getElementById('ocrImage').files[0];
+    if (!file) return alert('請選擇圖片！');
+    document.getElementById('ocrResult').innerText = '辨識中...';
 
-    <!-- AI生成頁 -->
-    <div id="ai" class="page">
-        <h2>報告預覽 - 專案A</h2>
-        <div class="card" style="background: #F8F8F8;">
-            <p>根據監測數據，PM2.5平均值為35μg/m³...</p>
-            <div class="button-group">
-                <button>🖊 編輯</button>
-                <button style="background: var(--primary-green); color: white;">✓ 接受</button>
-                <button>🔄 重新生成</button>
-            </div>
-        </div>
-        <div class="card" style="background: #FFF9E6; border-left: 4px solid #FFD700;">
-            <h4>系統建議</h4>
-            <ul>
-                <li>可補充與去年同期比較</li>
-                <li>統一數據單位</li>
-            </ul>
-        </div>
-        <button style="background: var(--primary-green); color: white; padding: 10px 20px; margin-top: 15px;">
+    Tesseract.recognize(file, 'eng+chi_tra', {
+        logger: m => console.log(m)
+    }).then(({ data: { text } }) => {
+        document.getElementById('ocrResult').innerText = text.trim();
+    }).catch(err => {
+        document.getElementById('ocrResult').innerText = '辨識失敗：' + err;
+    });
+}
+</script>
+<div class="card">
+<h3>📄 PDF 文件 OCR 辨識</h3>
+<p>請選擇 PDF 檔案進行辨識：</p>
+<input accept="application/pdf" id="pdfUpload" type="file"/>
+<button onclick="processPDF()">辨識 PDF 文字</button>
+<div id="pdfOCRResult" style="white-space: pre-wrap; background: #eef; padding: 10px; margin-top: 10px; border-radius: 6px; min-height: 80px;"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.5/dist/tesseract.min.js"></script>
+<script>
+function processPDF() {
+  const file = document.getElementById('pdfUpload').files[0];
+  if (!file) return alert("請選擇 PDF 檔案！");
+  const resultBox = document.getElementById('pdfOCRResult');
+  resultBox.innerText = "處理中...";
+  const reader = new FileReader();
+  reader.onload = function() {
+    const typedarray = new Uint8Array(this.result);
+    pdfjsLib.getDocument({ data: typedarray }).promise.then(async function(pdf) {
+      let fullText = '';
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale: 2.0 });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        await page.render({ canvasContext: context, viewport: viewport }).promise;
+        const dataUrl = canvas.toDataURL("image/png");
+        await Tesseract.recognize(dataUrl, 'eng+chi_tra').then(({ data: { text } }) => {
+          fullText += `--- 第 ${i} 頁 ---\n` + text + "\n\n";
+        });
+      }
+      resultBox.innerText = fullText.trim();
+    });
+  };
+  reader.readAsArrayBuffer(file);
+}
+</script>
+</div>
+<!-- AI生成頁 -->
+<div class="page" id="ai">
+<h2>報告預覽 - 專案A</h2>
+<div class="card" style="background: #F8F8F8;">
+<p>根據監測數據，PM2.5平均值為35μg/m³...</p>
+<div class="button-group">
+<button>🖊 編輯</button>
+<button style="background: var(--primary-green); color: white;">✓ 接受</button>
+<button>🔄 重新生成</button>
+</div>
+</div>
+<div class="card" style="background: #FFF9E6; border-left: 4px solid #FFD700;">
+<h4>系統建議</h4>
+<ul>
+<li>可補充與去年同期比較</li>
+<li>統一數據單位</li>
+</ul>
+</div>
+<button style="background: var(--primary-green); color: white; padding: 10px 20px; margin-top: 15px;">
             產生完整草稿
         </button>
-    </div>
-
-    <!-- 委員意見頁 -->
-    <div id="review" class="page">
-        <h2>審查意見導入</h2>
-        <div class="dashed-border" style="height: 100px; display: flex; align-items: center; justify-content: center;">
+</div>
+<!-- 委員意見頁 -->
+<div class="page" id="review">
+<h2>審查意見導入</h2>
+<div class="dashed-border" style="height: 100px; display: flex; align-items: center; justify-content: center;">
             拖曳文件至此或點擊上傳
         </div>
-        <textarea style="width: 100%; height: 100px; margin: 15px 0;" placeholder="或直接貼上文字..."></textarea>
-        <button style="background: var(--primary-green); color: white; padding: 10px 20px;">
+<textarea placeholder="或直接貼上文字..." style="width: 100%; height: 100px; margin: 15px 0;"></textarea>
+<button style="background: var(--primary-green); color: white; padding: 10px 20px;">
             立即優化報告
         </button>
-    </div>
-
-    <!-- 知識庫頁 -->
-    <div id="knowledge" class="page">
-        <h2>知識庫管理</h2>
-        <div class="dashed-border" style="padding: 15px;">
-            <p>📁 選擇檔案 (支援PDF/Word/Excel)</p>
-            <button style="background: var(--secondary-blue); color: white;">上傳歷史資料</button>
-        </div>
-        <div style="margin-top: 15px;">
-            <p>🗂 已上傳文件：</p>
-            <ul>
-                <li>空氣品質年報.pdf</li>
-                <li>噪音分析.xlsx</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- JavaScript：切換頁面顯示 -->
-    <script>
+</div>
+<!-- 知識庫頁 -->
+<div class="page" id="knowledge">
+<h2>知識庫管理</h2>
+<div class="dashed-border" style="padding: 15px;">
+<p>📁 選擇檔案 (支援PDF/Word/Excel)</p>
+<button style="background: var(--secondary-blue); color: white;">上傳歷史資料</button>
+</div>
+<div style="margin-top: 15px;">
+<p>🗂 已上傳文件：</p>
+<ul>
+<li>空氣品質年報.pdf</li>
+<li>噪音分析.xlsx</li>
+</ul>
+</div>
+</div>
+<!-- JavaScript：切換頁面顯示 -->
+<script>
         function showPage(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(p => p.style.display = 'none');
@@ -308,10 +367,9 @@
         // 預設顯示首頁
         window.onload = () => showPage('home');
     </script>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>© 2025 亞太環境科技公司 - <a href="#">隱私政策</a></p>
-    </div>
+<!-- Footer -->
+<div class="footer">
+<p>© 2025 亞太環境科技公司 - <a href="#">隱私政策</a></p>
+</div>
 </body>
 </html>
